@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+</head>
+<body>
+<div>
+    <p>sndd,kbisgjdnisgdjn sijsdn bjn bcbdjnbjnvjnjndjnjvcnj</p>
+    <input type="checkbox">
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button onclick="turn()">点击</button>
+</div>
+</body>
+<script>
+
+            $('body').keydown(function(e) {
+                if((e.ctrlKey || e.metaKey) && (e.keyCode == 65 || e.keyCode == 67)) {
+                    return false;
+                }
+            });
+
+</script>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面内容禁止复制问题总结</title>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <style>
+        html, body {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1>内容不错呦</h1>
+<p>
+    人这一生要走很多的地方，看许多的风景，这世间风景万千，很多时候我们无法分辨清楚谁是你今生的过客，谁是你生命的转轮。
+    有人遇见了，却中途分开了；有人同行了，却突然与你疏远了。这一切的变化，在你走到某一个人生阶段的时候，便会自见分晓。
+</p>
+<ul>
+    <li>这里可真是热闹啊，如此的大场面</li>
+    <li>怎么能够少我南宙呢</li>
+    <li>那高大人影嘴中发出了畅快淋漓的大笑之声</li>
+    <li>南宙，咱们两个可是好久没有一起聚过了</li>
+    <li>天云神王微微淡笑道</li>
+    <li>是啊，足足有数万年之久了吧</li>
+    <li>没想到咱们再一次见面</li>
+    <li>却是为了这圣族王族</li>
+    <li>也好，这圣族王族我想你一个人也无法独</li>
+    <li>这里可真是热闹啊，如此的大场面</li>
+    <li>怎么能够少我南宙呢</li>
+    <li>那高大人影嘴中发出了畅快淋漓的大笑之声</li>
+    <li>南宙，咱们两个可是好久没有一起聚过了</li>
+    <li>天云神王微微淡笑道</li>
+    <li>是啊，足足有数万年之久了吧</li>
+    <li>没想到咱们再一次见面</li>
+    <li>却是为了这圣族王族</li>
+    <li>也好，这圣族王族我想你一个人也无法独</li>
+</ul>
+<div>
+    大陆公认第一强者，斯特恩大陆唯一一名灵药圣师，大陆最出色的天才杰森，在一次实验意外中，进入时空乱流，回到了三千年前的灵师蛮荒时代，
+    在这个灵药师发展还未成熟的年代，在这个落后的灵师时代，且看重生之后的杰森，如何利用自己的力量，再度站在大陆的巅峰，突破自己的前世桎梏！
+</div>
+</body>
+</html>
+<script>
+
+
+
+    /**
+     * 最后的写法
+     */
+    function disableCopy() {
+//        //禁用chrome, firefox, safri, ie10, ie11
+//        $('body').css({
+//            "-moz-user-select":"none",
+//            "-webkit-user-select":"none",
+//            "-ms-user-select":"none",
+//            "-khtml-user-select":"none",
+//            "-o-user-select":"none",
+//            "user-select":"none"
+//        });
+//        $(document).on('keydown', function (e) {
+//            if ((e.ctrlKey || e.metaKey) && (e.keyCode === 65 || e.keyCode === 67)) {
+//                return false;
+//            }
+//        });
+//        //针对ie
+//        if (vm.browser.browser === 'IE') {
+//            //禁用ie9 右键
+//            if (vm.browser.version < 10) {
+//                $(document).on('contextmenu', function () {
+//                    return false;
+//                });
+//            }
+//            $(document).on('copy selectstart', function () {
+//                return false;
+//            });
+//        }
+        $(document).on('copy selectstart', function () {
+                return false;
+            });
+    }
+    disableCopy();
+
+
+
+    //判断当前浏览类型
+    function BrowserType() {
+        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+        var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+        var isEdge = userAgent.indexOf("Windows NT 6.1; Trident/7.0;") > -1 && !isIE; //判断是否IE的Edge浏览器
+        var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
+        var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器
+        var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1; //判断Chrome浏览器
+
+        if (isIE) {
+            var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+            reIE.test(userAgent);
+            var fIEVersion = parseFloat(RegExp["$1"]);
+            if (fIEVersion == 9) {
+                return "IE9";
+            }
+            else if (fIEVersion == 10) {
+                return "IE10";
+            }
+            else if (fIEVersion == 11) {
+                return "IE11";
+            }
+            else {//IE版本过低
+                return "0"
+            }
+        }//isIE end
+
+        if (isFirefox) {
+            return "Firefox";
+        }
+        if (isOpera) {
+            return "Opera";
+        }
+        if (isSafari) {
+            return "Safari";
+        }
+        if (isChrome) {
+            return "Chrome";
+        }
+        if (isEdge) {
+            return "Edge";
+        }
+    }
+
+</script>
+
+

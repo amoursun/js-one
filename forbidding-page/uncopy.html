@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+</head>
+<body>
+<div>
+    <ul>
+        <li>111</li>
+        <li>111</li>
+        <li>111</li>
+        <li>111</li>
+        <li>111</li>
+    </ul>
+    <input type="checkbox"> xxx
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+</div>
+</body>
+<script>
+    //设置CSS禁止选择(新版浏览器支持，并逐渐成为标准)
+    //css 写法
+//    body {
+//        -moz-user-select:none; /* Firefox私有属性 */
+//        -webkit-user-select:none; /* WebKit内核私有属性 */
+//        -ms-user-select:none; /* IE私有属性(IE10及以后) */
+//        -khtml-user-select:none; /* KHTML内核私有属性 */
+//        -o-user-select:none; /* Opera私有属性 */
+//        user-select:none; /* CSS3属性 */
+//    }
+    // js中写法
+//    $(function() {
+//        $("body").css({
+//            "-moz-user-select":"none",
+//            "-webkit-user-select":"none",
+//            "-ms-user-select":"none",
+//            "-khtml-user-select":"none",
+//            "-o-user-select":"none",
+//            "user-select":"none"
+//        });
+//    });
+
+    /**
+     * 禁用右键菜单、复制、选择
+     * ie 不支持
+     */
+//    $(document).bind("contextmenu copy selectstart", function() {
+//        return false;
+//    });
+    /**
+     * 禁用Ctrl+C和Ctrl+V（所有浏览器均支持）
+     */
+//    $(document).keydown(function(e) {
+//        if((e.ctrlKey || e.metaKey) && (e.keyCode == 65 || e.keyCode == 67)) {
+//            return false;
+//        }
+//    });
+    /**
+     * 可以使用event.preventDefault() 方法来阻止oncontextmenu() 还有onselectstart()
+     * 启用它，将事件重新赋值即可，可以赋值为null，或字符串、布尔值都行
+     * ie  百度浏览器不支持
+     */
+    document.oncontextmenu=function(event){
+        event.preventDefault();
+    }
+    document.onselectstart=function(event){
+        event.preventDefault();
+    };
+//    document.oncontextmenu="";
+//    document.onselectstart=true;
+    /**
+     * 使右键和复制失效
+     * 火狐不顶用       window.close() 火狐/safri/ie不顶用
+     * 兼容ie9 10以上不兼容
+     * 需要header标签 加上以下内容 才会生效
+     */
+    document.oncontextmenu=new Function('event.returnValue=false;');
+    document.onselectstart=new Function('event.returnValue=false;');
+
+    function disableCopy() {
+        //禁用chrome, firefox, safri, ie10, ie11
+        $('.answer').css({
+            "-moz-user-select":"none",
+            "-webkit-user-select":"none",
+            "-ms-user-select":"none",
+            "-khtml-user-select":"none",
+            "-o-user-select":"none",
+            "user-select":"none"
+        });
+
+        //针对ie
+        if (vm.browser.browser === 'IE') {
+            //禁用ie9 右键
+            if (vm.browser.version < 10) {
+                $(document).on('contextmenu', function () {
+                    return false;
+                });
+            }
+            $(document).on('copy selectstart', function () {
+                return false;
+            });
+            $(document).on('keydown', function (e) {
+                if ((e.ctrlKey || e.metaKey) && (e.keyCode === 65 || e.keyCode === 67)) {
+                    return false;
+                }
+            });
+        }
+    }
+
+
+
+    //    另一种:
+    $('xxx').on('selectstart copy contextmenu', function () {
+        return false;
+    });
+    /**
+     * 其他
+     */
+//    在<body>中加入以下代码：
+//    <body oncontextmenu="return false" onselectstart="return false">
+//     <body oncontextmenu="event.returnValue=false" onselectstart="event.returnValue=false">
+//    如果只限制复制，可以在<body>加入以下代码：
+//    <body oncopy="alert('对不起，禁止复制！');return false;">
+
+//     <div oncontextmenu="return false"
+//          onkeypress="return false"
+//          onkeydown="return false"
+//          onkeyup="return false"
+//          onselectstart="return false"
+//          ondragstart="return false"
+//          onbeforecopy="return false"></div>
+
+
+    func
+</script>
+</html>

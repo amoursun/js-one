@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+</head>
+<body>
+<div>
+    <p>sndd,kbisgjdnisgdjn sijsdn bjn bcbdjnbjnvjnjndjnjvcnj</p>
+    <input type="checkbox">
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button onclick="turn()">点击</button>
+</div>
+</body>
+<script>
+    /**
+     * 禁用Ctrl+C和Ctrl+V（所有浏览器均支持）
+     */
+            $(document).keydown(function(e) {
+                if((e.ctrlKey || e.metaKey) && (e.keyCode == 65 || e.keyCode == 67)) {
+                    return false;
+                }
+            });
+    /**
+     * 禁用鼠标右键
+     */
+    	$(document).bind('contextmenu copy selectstart', function(){
+    		return false;
+    	})
+//    document.oncontextmenu=function(e){
+//        e.preventDefault();
+//    }
+//    document.onselectstart=function(e){
+//        e.preventDefault();
+//    };
+    function turn() {
+        // window.location.href = 'https://www.baidu.com/';
+        window.open('https://www.baidu.com/', '_blank');
+    }
+</script>
+</html>
